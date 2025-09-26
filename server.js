@@ -6,13 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
 const USER_ID = "34f820f7-8fed-4f01-a74d-3b5c98a8de86";
+const APP_TOKEN = "eyJ0eXAiOiJKV1QiLCJub25jZSI6ImYzSG5CT1JxMU9aXzR4NWJoc2VGR0w2aXJUcEhkQWpUUTNkeDRDbnJhZkkiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhTMjNiN0RvN1RjYVUxUm9MSHdwSXEyNFZZZyIsImtpZCI6IkhTMjNiN0RvN1RjYVUxUm9MSHdwSXEyNFZZZyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDVlNGI3MC1lMzg2LTRkNzMtYmIzMC01MThmNWUxYWMxYWUvIiwiaWF0IjoxNzU4ODc5MzgxLCJuYmYiOjE3NTg4NzkzODEsImV4cCI6MTc1ODg4MzI4MSwiYWlvIjoiazJKZ1lPalQ3ejVaSXhMbUtLbWNkdlhrNXYzaEFBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJkeWF6IiwiYXBwaWQiOiI4ZWU3YmViMy03YmZjLTRhODctOWE1OS1mMjMxN2YzNjI5MTUiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDVlNGI3MC1lMzg2LTRkNzMtYmIzMC01MThmNWUxYWMxYWUvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiIxZmEzNmI2Ni1kMDRjLTQ5NTYtOTZmOC1kZmRiODg5YWI1NzMiLCJyaCI6IjEuQVZZQWNFdGVSSWJqYzAyN01GR1BYaHJCcmdNQUFBQUFBQUFBd0FBQUFBQUFBQUNmQUFCV0FBLiIsInJvbGVzIjpbIkRpcmVjdG9yeS5SZWFkV3JpdGUuQWxsIiwiU2l0ZXMuUmVhZC5BbGwiLCJTaXRlcy5SZWFkV3JpdGUuQWxsIiwiR3JvdXAuUmVhZFdyaXRlLkFsbCIsIkZpbGVzLlJlYWRXcml0ZS5BbGwiLCJEaXJlY3RvcnkuUmVhZC5BbGwiXSwic3ViIjoiMWZhMzZiNjYtZDA0Yy00OTU2LTk2ZjgtZGZkYjg4OWFiNTczIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkFTIiwidGlkIjoiNDQ1ZTRiNzAtZTM4Ni00ZDczLWJiMzAtNTE4ZjVlMWFjMWFlIiwidXRpIjoidUU2WW1kMVJxRU9rdVpiZkdWOG1BQSIsInZlciI6IjEuMCIsIndpZHMiOlsiMDk5N2ExZDAtMGQxZC00YWNiLWI0MDgtZDVjYTczMTIxZTkwIl0sInhtc19mdGQiOiJXNnZpV2FnTVV5RS11d0hUdHRPVlNPYktBVllhYk92TWpkaGdnUXl6anZJQmEyOXlaV0Z6YjNWMGFDMWtjMjF6IiwieG1zX2lkcmVsIjoiNyAxNCIsInhtc19yZCI6IjAuNDJMbFlCSmlEQk1TNFdBWEV0anJWSzZnd05EczBGRWVfVF9yMHRVdW9DaW5rSUNTTE9lQi1WOFgtdTA0SzFyWWNvajdERkNVUTBpQW1RRUNEa0JwQUEiLCJ4bXNfdGNkdCI6MTY3MjIwMjQyNH0.eMWoZwE8VKoq6xBg8y2SQ2C5ezHs3D35B-hM5g_Q25jGIN6Gg8UzEtapHUFODYpuQJ1FEGA_8MtuIZkDKGSgCQ010deMW8I5V_bcQcL2IGhCPe0KgdOgV25aBoJvkUmT9RZPM9DeGNNDC4aJ2yVehmAeJhRTEKl3mkZJ456hTNc6CS19LodTJ8sVnrr8uXXyD2sAaYtAyu9XvMknBrDiHoMdDPfnL8HS763NePXn3MNQmxBYa1Cw0Fm_tBNsGvf2QD9V21l-l4RI5ARVpfW-c6b-gjkLUgU0ivnYnWj3Ns6QN-ie615uAnoSe60wEFkCB5ce-O5ujXpd8Np236eS1g"; 
 
-
-const APP_TOKEN = "eyJ0eXAiOiJKV1QiLCJub25jZSI6IktNeU5UVjcyVkRlUDMzZmVpTTQxU21TZDMwZnRsTWdSR0ZIWnJyTC1mRW8iLCJhbGciOiJSUzI1NiIsIng1dCI6IkhTMjNiN0RvN1RjYVUxUm9MSHdwSXEyNFZZZyIsImtpZCI6IkhTMjNiN0RvN1RjYVUxUm9MSHdwSXEyNFZZZyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDVlNGI3MC1lMzg2LTRkNzMtYmIzMC01MThmNWUxYWMxYWUvIiwiaWF0IjoxNzU4NzE5MjUxLCJuYmYiOjE3NTg3MTkyNTEsImV4cCI6MTc1ODcyMzE1MSwiYWlvIjoiazJSZ1lOQ1dkaEV1dWY2NmVySmhYbWhTVmVNeEFBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJkeWF6IiwiYXBwaWQiOiI4ZWU3YmViMy03YmZjLTRhODctOWE1OS1mMjMxN2YzNjI5MTUiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80NDVlNGI3MC1lMzg2LTRkNzMtYmIzMC01MThmNWUxYWMxYWUvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiIxZmEzNmI2Ni1kMDRjLTQ5NTYtOTZmOC1kZmRiODg5YWI1NzMiLCJyaCI6IjEuQVZZQWNFdGVSSWJqYzAyN01GR1BYaHJCcmdNQUFBQUFBQUFBd0FBQUFBQUFBQUNmQUFCV0FBLiIsInJvbGVzIjpbIkRpcmVjdG9yeS5SZWFkV3JpdGUuQWxsIiwiU2l0ZXMuUmVhZC5BbGwiLCJTaXRlcy5SZWFkV3JpdGUuQWxsIiwiR3JvdXAuUmVhZFdyaXRlLkFsbCIsIkZpbGVzLlJlYWRXcml0ZS5BbGwiLCJEaXJlY3RvcnkuUmVhZC5BbGwiXSwic3ViIjoiMWZhMzZiNjYtZDA0Yy00OTU2LTk2ZjgtZGZkYjg4OWFiNTczIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkFTIiwidGlkIjoiNDQ1ZTRiNzAtZTM4Ni00ZDczLWJiMzAtNTE4ZjVlMWFjMWFlIiwidXRpIjoiSGNRNXU1ZWREMFNWeXFITTNDd05BQSIsInZlciI6IjEuMCIsIndpZHMiOlsiMDk5N2ExZDAtMGQxZC00YWNiLWI0MDgtZDVjYTczMTIxZTkwIl0sInhtc19mdGQiOiJHOERaRVpXcmNPVURSRjhGcXhYZEFNWmtScnBUckhKY0ZvUG9GWjVUNDdRQmEyOXlaV0Z6YjNWMGFDMWtjMjF6IiwieG1zX2lkcmVsIjoiMjIgNyIsInhtc19yZCI6IjAuNDJMbFlCSmlEQk1TNFdBWEV0anJWSzZnd05EczBGRWVfVF9yMHRVdW9DaW5rSUNTTE9lQi1WOFgtdTA0SzFyWWNvajdERkNVUTBpQW1RRUNEa0JwQUEiLCJ4bXNfdGNkdCI6MTY3MjIwMjQyNH0.J7lyj9av7jYaHAw_ZSNcif838QSTVeFI4UspKWdWkPpOatRm6VSne-UVlYJ5XGx_u70G5-evUZ9Y3UjiTehXF6tBO5BQzlbj1XQWsDOJoaenT_Sv4BJBJEhzI0cypoZzAPe0Rv_bKuaPnqo2Ys_beja5O2QBuV2373HvSQ_5rWeH_5aB14DUtcrRa9uv_tkED5vfeuDZe_s3kPRQKhGdrLp3wy5kgK3DBJ-40yYH9yvyhwe59T0uNAc42fLVsgoJGLQFhf5QHmyArcUARQSdtkgIDyZ05m_DoqBdCOJpxW9hsLikPwg1usZP72EmjVzzYkW92KPOhjEu5zK62GWxgw"
-
-
+// Upload file to OneDrive
 app.post("/onedrive/upload", async (req, res) => {
   const { filename, content } = req.body;
 
@@ -42,7 +39,7 @@ app.post("/onedrive/upload", async (req, res) => {
   }
 });
 
-
+// Load file by name
 app.get("/onedrive/fileByName/:filename", async (req, res) => {
   const filename = req.params.filename;
 
@@ -72,7 +69,7 @@ app.get("/onedrive/fileByName/:filename", async (req, res) => {
   }
 });
 
-
+// Update file by name
 app.put("/onedrive/fileByName/:filename", async (req, res) => {
   const filename = req.params.filename;
   const { content } = req.body;
@@ -111,6 +108,25 @@ app.put("/onedrive/fileByName/:filename", async (req, res) => {
   } catch (err) {
     console.error("File update failed:", err);
     res.status(500).send("File update failed");
+  }
+});
+
+// ✅ Spellcheck API (LanguageTool)
+app.post("/spellcheck", async (req, res) => {
+  const { text } = req.body;
+
+  try {
+    const response = await fetch("https://api.languagetool.org/v2/check", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `text=${encodeURIComponent(text)}&language=en-US`
+    });
+
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Spell check failed:", err);
+    res.status(500).json({ error: "Spell check failed" });
   }
 });
 
