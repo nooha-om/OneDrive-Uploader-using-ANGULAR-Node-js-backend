@@ -111,7 +111,7 @@ app.put("/onedrive/fileByName/:filename", async (req, res) => {
   }
 });
 
-// ✅ Spellcheck API (LanguageTool)
+//  API (LanguageTool)
 app.post("/spellcheck", async (req, res) => {
   const { text } = req.body;
 
